@@ -557,8 +557,11 @@ async function scrapeMilanuncios(searchParams = {}) {
 
       // Conexión al navegador Chromium remoto en lugar de lanzar uno nuevo
       console.log('Conectando a la instancia remota de Chromium...');
+      // Use environment variable or fallback to default value
+      const browserWSEndpoint = process.env.CHROMIUM_WS_ENDPOINT || 'ws://chromium:9222/devtools/browser';
+      
       browser = await puppeteer.connect({
-        browserWSEndpoint: 'ws://chromium:9222/devtools/browser',
+        browserWSEndpoint,
         defaultViewport: null
       });
 

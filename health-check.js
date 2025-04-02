@@ -9,6 +9,9 @@ const axios = require('axios');
 
 // Comprueba el estado del sistema y de la conexión con Chromium
 async function checkSystemStatus() {
+  const CHROMIUM_HOST = process.env.CHROMIUM_HOST || 'chromium';
+  const CHROMIUM_PORT = process.env.CHROMIUM_PORT || '9222';
+
   const status = {
     timestamp: new Date().toISOString(),
     system: {
@@ -33,7 +36,7 @@ async function checkSystemStatus() {
     chromiumService: {
       status: 'pending',
       connectionStatus: null,
-      debuggingUrl: 'ws://chromium:9222/devtools/browser',
+      debuggingUrl: `ws://${CHROMIUM_HOST}:${CHROMIUM_PORT}/devtools/browser`,
       versionInfo: null
     },
     dependencies: {
@@ -55,7 +58,7 @@ async function checkSystemStatus() {
     // Comprobar conectividad con el servicio de Chromium
     try {
       // Primero intentamos conectarnos al endpoint HTTP de Chromium para obtener info
-      const response = await axios.get('http://chromium:9222/json/version', {
+      const response = await axios.get(`http://${CHROMIUM_HOST}:${CHROMIUM_PORT}/json/version`, {
         timeout: 5000
       });
 
