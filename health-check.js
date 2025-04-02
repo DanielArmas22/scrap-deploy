@@ -36,7 +36,7 @@ async function checkSystemStatus() {
     chromiumService: {
       status: 'pending',
       connectionStatus: null,
-      debuggingUrl: `ws://${CHROMIUM_HOST}:${CHROMIUM_PORT}/devtools/browser`,
+      debuggingUrl: `ws://${CHROMIUM_HOST}:${CHROMIUM_PORT}/devtools/browser/6a1fa7e2-56d7-4ba8-a5bd-6d34df7bc546`,
       versionInfo: null
     },
     dependencies: {
